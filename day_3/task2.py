@@ -47,12 +47,15 @@ for column in range(0, len(engine_map)):
 print(result)
 for items in range(0,len(result)):
     try:
-        for awk in range(0,len(result)+1):
-            if result[items][1] == result[items+awk][1]:
-                print(result[items+awk][1], result[items+awk])
+        for li_len in range(0,len(result)+1):
+            if result[items][1] == result[items+li_len][1]:
                 check_gear +=1
-        if check_gear == 2:
-            sum += result[items][0]*result[items+awk][0]
+            if check_gear == 2:
+                sum += result[items][0]*result[items+li_len][0]
+                print(result[items][0], result[items+li_len][0], result[items][1])
+                result.remove(result[items])
+                result.remove(result[items+li_len])
+                check_gear = 0
     except IndexError:
         pass
 end = time.time()
